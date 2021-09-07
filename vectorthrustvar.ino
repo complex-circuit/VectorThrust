@@ -17,7 +17,7 @@ void loop() {int l=pulseIn(5,HIGH,30000);
   if(l>100)
     v=l;
     double V=(v-994)/994.0;
-  
+    //V is between 0 and 1. 1 is centered thrust, and 0 is vectored thrust.
     int elev=(pulseIn(4,HIGH)-994)*180*V/994;
     int rudd=(pulseIn(11,HIGH)-994)*180*V/994;
     elev+=90*(1-V);
