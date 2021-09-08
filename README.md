@@ -23,8 +23,9 @@ This is where you cut the data line.
 * Reruote the channel from the Y-harness to the pin on the Arduino
 * The line that goes to the servo is the corresponding output pin on the Arduino. Reference the pinout section or photo of the table. 
 
-Warning:
---------
-The system is a little bit glitchy, and if you give it full elevator, it sometimes moves the vectored thrust more than it is supposed to.
-With vectorthrustvar.ino, this sometimes happens even if you turn the vector thrust completely off.
-I don't know why it is doing this. If you do, then please leave a comment on this repository.
+Bug Fixes:
+----------
+* The previous version of vectorthrustvar.ino was a bit glitchy and would occasionally do something a bit wonky
+when I turned the thrust vector to full and pulled full elevator. I found out that it was because it passed a number
+greater than the max to elevVec.write() and there were overflow problems sending the servo in the wrong direction.
+I fixed this by adding safeties that pull values that are beyond a full extend to the closest full extend.
